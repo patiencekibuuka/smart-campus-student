@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Smart Campus - Results</title>
+</head>
+
+<body>
+
+<h1>Student Results</h1>
+
+<h2>Enter Student Result</h2>
+
+<form th:action="@{/results/save}"
+      th:object="${result}"
+      method="post">
+
+    <input type="text"
+           th:field="*{studentNumber}"
+           placeholder="Student Registration Number"
+           required>
+
+    <input type="text"
+           th:field="*{courseCode}"
+           placeholder="Course Code"
+           required>
+
+    <input type="number"
+           th:field="*{marks}"
+           placeholder="Marks"
+           min="0"
+           max="100"
+           step="0.01"
+           required>
+
+    <button type="submit">Save Result</button>
+
+</form>
+
+<hr>
+
+<h2>Student Results</h2>
+
+<table border="1">
+
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Student Number</th>
+        <th>Course Code</th>
+        <th>Marks</th>
+        <th>Grade</th>
+    </tr>
+    </thead>
+
+    <tbody>
+
+    <tr th:each="result : ${results}">
+
+        <td th:text="${result.id}"></td>
+        <td th:text="${result.studentNumber}"></td>
+        <td th:text="${result.courseCode}"></td>
+        <td th:text="${result.marks}"></td>
+        <td th:text="${result.grade}"></td>
+
+    </tr>
+
+    </tbody>
+
+</table>
+
+</body>
+
+</html>

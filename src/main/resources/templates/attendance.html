@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Smart Campus - Attendance</title>
+</head>
+
+<body>
+
+<h1>Student Attendance</h1>
+
+<h2>Record Attendance</h2>
+
+<form th:action="@{/attendance/save}"
+      th:object="${attendance}"
+      method="post">
+
+    <input type="text"
+           th:field="*{studentNumber}"
+           placeholder="Student Registration Number"
+           required>
+
+    <input type="text"
+           th:field="*{courseCode}"
+           placeholder="Course Code"
+           required>
+
+    <input type="date"
+           th:field="*{date}"
+           required>
+
+    <select th:field="*{status}" required>
+
+        <option value="">Select Status</option>
+        <option value="Present">Present</option>
+        <option value="Absent">Absent</option>
+
+    </select>
+
+    <button type="submit">Save Attendance</button>
+
+</form>
+
+<hr>
+
+<h2>Attendance Records</h2>
+
+<table border="1">
+
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Student Number</th>
+        <th>Course Code</th>
+        <th>Date</th>
+        <th>Status</th>
+    </tr>
+    </thead>
+
+    <tbody>
+
+    <tr th:each="attendance : ${attendances}">
+
+        <td th:text="${attendance.id}"></td>
+        <td th:text="${attendance.studentNumber}"></td>
+        <td th:text="${attendance.courseCode}"></td>
+        <td th:text="${attendance.date}"></td>
+        <td th:text="${attendance.status}"></td>
+
+    </tr>
+
+    </tbody>
+
+</table>
+
+</body>
+
+</html>

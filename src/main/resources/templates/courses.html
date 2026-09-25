@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Smart Campus - Courses</title>
+</head>
+
+<body>
+
+<h1>Course Management</h1>
+
+<h2>Add New Course</h2>
+
+<form th:action="@{/courses/save}" th:object="${course}" method="post">
+
+    <input type="text"
+           th:field="*{courseCode}"
+           placeholder="Course Code"
+           required>
+
+    <input type="text"
+           th:field="*{courseName}"
+           placeholder="Course Name"
+           required>
+
+    <input type="number"
+           th:field="*{creditUnits}"
+           placeholder="Credit Units"
+           required>
+
+    <button type="submit">Add Course</button>
+
+</form>
+
+<hr>
+
+<h2>Available Courses</h2>
+
+<table border="1">
+
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Course Code</th>
+        <th>Course Name</th>
+        <th>Credit Units</th>
+    </tr>
+    </thead>
+
+    <tbody>
+
+    <tr th:each="course : ${courses}">
+
+        <td th:text="${course.id}"></td>
+        <td th:text="${course.courseCode}"></td>
+        <td th:text="${course.courseName}"></td>
+        <td th:text="${course.creditUnits}"></td>
+
+    </tr>
+
+    </tbody>
+
+</table>
+
+</body>
+
+</html>
